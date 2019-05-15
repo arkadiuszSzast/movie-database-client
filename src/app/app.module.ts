@@ -8,21 +8,31 @@ import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
 import { CustomMaterialModule } from './core/material.module';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './core/app.interceptor';
+import { HttpInterceptingHandler } from '@angular/common/http/src/module';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     CustomMaterialModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
