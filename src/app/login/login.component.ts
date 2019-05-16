@@ -5,6 +5,8 @@ import { TokenStorage } from '../core/token.storage';
 import { tokenKey } from '@angular/core/src/view';
 import 'rxjs/add/operator/map';
 
+const TOKEN_KEY = 'Authorization';
+const REFRESH_TOKEN_KEY = 'Refresh-token';
 
 @Component({
   selector: 'app-login',
@@ -20,8 +22,10 @@ export class LoginComponent {
 
   login() : void {
     this.authService.attemptAuth(this.username, this.password).subscribe(res => {
-      var token = res.headers.get('Authorization').replace('Bearer ', '');
-      this.tokenStorage.saveToken(token);
+      var accessToken = res.headers.get(TOKEN_KEY);
+      var refreshToken = res.headers.get(REFRESH_TOKEN_KEY);
+      this.tokenStorage.saveToken(accessToken);
+      this.tokenStorage.saveRefreshToken(refreshToken);
       this.router.navigate(['user']);
     });
     
