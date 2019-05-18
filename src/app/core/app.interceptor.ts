@@ -1,66 +1,69 @@
 import { Injectable } from '@angular/core';
-import {HttpInterceptor, HttpRequest, HttpHandler, HttpSentEvent, HttpHeaderResponse, HttpProgressEvent,
-  HttpResponse, HttpUserEvent, HttpErrorResponse, HttpEvent, HttpHeaders} from '@angular/common/http';
-import { Observable, throwError, BehaviorSubject} from 'rxjs';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
-import {TokenStorage} from './token.storage';
-import {catchError, map, tap, flatMap} from 'rxjs/operators'; 
-import { RequiredValidator } from '@angular/forms';
-import 'rxjs/add/operator/do';
+import { TokenStorage } from './token.storage';
+import { catchError, tap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+import { AppProperties } from './app.properties';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/observable/of';
 
-const TOKEN_KEY = 'Authorization';
-const REFRESH_TOKEN_KEY = 'Refresh-token';
-
-
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class TokenInterceptor implements HttpInterceptor {
-  isRefreshingToken = false;
+  isRefreshingTokenInProgress = false;
   tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+
   constructor(private tokenStorage: TokenStorage, private router: Router, private authService: AuthService) { }
 
   intercept(
     req: HttpRequest<any>,
-     next: HttpHandler
-    ):Observable<HttpEvent<any>> {
-    const request = this.applyToken(req);
-    return next.handle(request).pipe(
-      tap(event => {
-        if (event instanceof HttpResponse) {
-          console.log(`Request for ${req.urlWithParams} took  ms.`);
-        }
-      }, error => {
-        if(error instanceof HttpErrorResponse) {
-          if(error.status === 401) {
+    next: HttpHandler
+  ): Observable<any> {
+    let request = this.applyToken(req);
 
-            if(this.tokenStorage.getRefreshToken() && !this.isRefreshingToken) {
-              this.isRefreshingToken = true;
-              this.authService.getNewToken().subscribe(res => {
-                var accessToken = res.headers.get(TOKEN_KEY);
-                var refreshToken = res.headers.get(REFRESH_TOKEN_KEY);
-                this.tokenStorage.saveToken(accessToken);
-                this.tokenStorage.saveRefreshToken(refreshToken);
-              });
-              this.isRefreshingToken = false;
-              console.log('refresh token present')
-            }
-            else {
-              this.router.navigate(['login']);
-            }
-            
-          }        
+    return next.handle(request).pipe(
+      catchError((err: any) => {
+        if (err instanceof HttpErrorResponse && err.status === 401 && this.isNotLoginPage(err)) {
+          if (!this.tokenStorage.getRefreshToken ||
+            this.isRefreshEp(err)) {
+            this.router.navigate(['login']);
+            throw err;
+          }
+          return this.authService.getNewToken()
+            .pipe(tap(
+              (success) => { },
+              (error) => {
+                throw error;
+              },
+              () => {
+                this.isRefreshingTokenInProgress = false;
+              }
+            )).mergeMap(res => {
+              this.tokenStorage.updateToken(res);
+              return next.handle(this.applyToken(request));
+            });
+        }
+        else {
+          return Observable.of({});
         }
       })
     )
+  }
 
-}
+  isNotLoginPage(err: HttpErrorResponse): boolean {
+    return !err.url.includes(AppProperties.LOGIN_ENDPOINT);
+  }
 
-applyToken(req: HttpRequest<any>): HttpRequest<any> {
-  const headers = new HttpHeaders({
-    'Refresh-token' : this.tokenStorage.getRefreshToken() ? this.tokenStorage.getRefreshToken() : '',
-    'Authorization' : this.tokenStorage.getToken() ? this.tokenStorage.getToken() : '',
-  });
-  return req.clone({headers});
-} 
+  isRefreshEp(err: HttpErrorResponse): boolean {
+    return err.url.includes(AppProperties.REFRESH_ENDPOINT);
+  }
 
+  applyToken(req: HttpRequest<any>): HttpRequest<any> {
+    const headers = new HttpHeaders({
+      'Authorization': this.tokenStorage.getToken() ? this.tokenStorage.getToken() : '',
+    });
+    return req.clone({ headers });
+  }
 }
