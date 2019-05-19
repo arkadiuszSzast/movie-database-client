@@ -1,0 +1,46 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Sign up</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="registerForm" class="example-form">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput formControlName="username" placeholder="Username" name="username" required>
+            </mat-form-field>
+            <mat-error *ngIf="hasError('username', 'required') && f.username.touched">Username is required</mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput formControlName="password" placeholder="Password" type="password" name="password"
+                minlength="8" required>
+            </mat-form-field>
+            <mat-error *ngIf="hasError('password', 'required') && f.password.touched">Password is required</mat-error>
+            <mat-error *ngIf="hasError('password', 'minlength') && f.password.touched">Password needs to be at least 
+              8 characters</mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput formControlName="confirmPassword" placeholder="Confirm password" type="password"
+                name="confirm-password" required>
+            </mat-form-field>
+            <mat-error *ngIf="hasError('confirmPassword', 'required') && f.confirmPassword.touched">Confirm password is
+              required</mat-error>
+            <mat-error *ngIf="hasError('confirmPassword', 'mustMatch') && f.confirmPassword.touched">Confirm password
+              must be the same as password</mat-error>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="signUp()" color="primary" [disabled]="!registerForm.valid">Sign up</button>
+  </mat-card-actions>
+</mat-card>

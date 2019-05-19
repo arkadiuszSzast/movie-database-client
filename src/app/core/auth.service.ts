@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { TokenStorage } from './token.storage';
 import { AppProperties } from './app.properties';
+import { IUserForm } from '../user/user-form.model';
 
 
 @Injectable({ providedIn: 'root' })
@@ -17,6 +18,10 @@ export class AuthService {
 
   getNewToken(): Observable<HttpResponse<Response>> {
     return this.http.post<Response>(AppProperties.REFRESH_ENDPOINT + '?refreshToken=' + this.tokenStorage.getRefreshToken(), null, { observe: 'response' });
+  }
+
+  signUp(body: IUserForm): Observable<HttpResponse<Response>> {
+    return this.http.post<Response>(AppProperties.SIGN_UP_ENDPOINT, body, { observe: 'response' });
   }
 
   test(): Observable<HttpResponse<Response>> {

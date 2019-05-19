@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 })
 export class LoginComponent {
 
-  constructor(private router: Router, public authService: AuthService, private tokenStorage: TokenStorage) { }
+  constructor(private router: Router, private authService: AuthService, private tokenStorage: TokenStorage) { }
 
   username: string
   password: string
