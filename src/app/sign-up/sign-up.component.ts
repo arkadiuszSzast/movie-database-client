@@ -22,6 +22,7 @@ export class SignUpComponent {
       username: ['', Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['', [Validators.required]],
+      recaptcha: ['', Validators.required]
     }, {
         validator: MustMatch('password', 'confirmPassword')
       });
@@ -38,8 +39,9 @@ export class SignUpComponent {
     if (this.registerForm.invalid) {
       return;
     }
+    const recaptchaResponse: string = this.registerForm.get("recaptcha").value;
     const user: IUserForm = { username: this.registerForm.get("username").value, password: this.registerForm.get("password").value };
-    this.authService.signUp(user).subscribe(res => {
+    this.authService.signUp(user, recaptchaResponse).subscribe(res => {
       if (res.status == 201) {
         this.router.navigate(['login']);
       }

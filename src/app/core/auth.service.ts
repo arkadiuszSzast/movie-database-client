@@ -20,8 +20,8 @@ export class AuthService {
     return this.http.post<Response>(AppProperties.REFRESH_ENDPOINT + '?refreshToken=' + this.tokenStorage.getRefreshToken(), null, { observe: 'response' });
   }
 
-  signUp(body: IUserForm): Observable<HttpResponse<Response>> {
-    return this.http.post<Response>(AppProperties.SIGN_UP_ENDPOINT, body, { observe: 'response' });
+  signUp(body: IUserForm, recaptchaResponse: string): Observable<HttpResponse<Response>> {
+    return this.http.post<Response>(AppProperties.SIGN_UP_ENDPOINT + '?recaptchaResponse=' + recaptchaResponse, body, { observe: 'response' });
   }
 
   test(): Observable<HttpResponse<Response>> {

@@ -36,11 +36,22 @@
               must be the same as password</mat-error>
           </td>
         </tr>
+        <tr>
+          <td>
+            <ngx-recaptcha2 #captchaElem
+                [siteKey]="'6LdbWqQUAAAAAMdsB2rNlXYuKbyv4uw61YLoavBw'"
+                formControlName="recaptcha">
+            </ngx-recaptcha2>
+          </td>
+        </tr>
       </table>
     </form>
     <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button (click)="signUp()" color="primary" [disabled]="!registerForm.valid">Sign up</button>
+  </mat-card-actions>
+  <mat-card-actions>
+    <button mat-stroked-button routerLink="/login" color="primary">LOG IN WITH EXISTING ACCOUNT</button>
   </mat-card-actions>
 </mat-card>
