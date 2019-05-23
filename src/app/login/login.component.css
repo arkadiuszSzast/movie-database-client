@@ -5,3 +5,9 @@
   .example-spacer {
     flex: 1 1 auto;
   }
+
+  .forgotPassword {
+    color: #286e96;
+    font-size: small;
+    cursor: pointer;
+  }

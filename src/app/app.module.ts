@@ -12,6 +12,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './core/app.interceptor';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { ConfirmedComponent } from './sign-up/confirmed/confirmed.component';
+import { PasswordResetConfirmationComponent } from './password-reset/password-reset-confirmation/password-reset-confirmation.component';
+import { PasswordResetFormComponent } from './password-reset/password-reset-form/password-reset-form.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,10 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     UserComponent,
     LoginComponent,
     SignUpComponent,
+    ConfirmedComponent,
+    PasswordResetComponent,
+    PasswordResetConfirmationComponent,
+    PasswordResetFormComponent,
   ],
   imports: [
     BrowserModule,

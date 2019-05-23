@@ -4,6 +4,7 @@ import { IUserForm } from '../user/user-form.model';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from './mustMatch.validator';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-sign-up',
@@ -20,6 +21,7 @@ export class SignUpComponent {
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
+      email: ['', Validators.email],
       password: ['', Validators.required],
       confirmPassword: ['', [Validators.required]],
       recaptcha: ['', Validators.required]
@@ -40,7 +42,9 @@ export class SignUpComponent {
       return;
     }
     const recaptchaResponse: string = this.registerForm.get("recaptcha").value;
-    const user: IUserForm = { username: this.registerForm.get("username").value, password: this.registerForm.get("password").value };
+    const user: IUserForm = { username: this.registerForm.get("username").value,
+    email: this.registerForm.get("email").value,
+    password: this.registerForm.get("password").value };
     this.authService.signUp(user, recaptchaResponse).subscribe(res => {
       if (res.status == 201) {
         this.router.navigate(['login']);

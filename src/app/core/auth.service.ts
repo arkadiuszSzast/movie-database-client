@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpParams, HttpHeaders } from '@angular/common/http';
 import { TokenStorage } from './token.storage';
 import { AppProperties } from './app.properties';
 import { IUserForm } from '../user/user-form.model';
@@ -13,19 +13,18 @@ export class AuthService {
   }
 
   attemptAuth(username: string, password: string): Observable<HttpResponse<Response>> {
-    return this.http.post<Response>(AppProperties.LOGIN_ENDPOINT + '?username=' + username + '&password=' + password, null, { observe: 'response' });
+    const params = new HttpParams().append('username', username).append('password', password);
+    return this.http.post<Response>(AppProperties.LOGIN_ENDPOINT, {}, { observe: 'response', params: params });
   }
 
   getNewToken(): Observable<HttpResponse<Response>> {
-    return this.http.post<Response>(AppProperties.REFRESH_ENDPOINT + '?refreshToken=' + this.tokenStorage.getRefreshToken(), null, { observe: 'response' });
+    const headers = new HttpHeaders().append('Refresh-token', this.tokenStorage.getRefreshToken());
+    return this.http.post<Response>(AppProperties.REFRESH_ENDPOINT, {}, { observe: 'response', headers: headers });
   }
 
   signUp(body: IUserForm, recaptchaResponse: string): Observable<HttpResponse<Response>> {
-    return this.http.post<Response>(AppProperties.SIGN_UP_ENDPOINT + '?recaptchaResponse=' + recaptchaResponse, body, { observe: 'response' });
-  }
-
-  test(): Observable<HttpResponse<Response>> {
-    return this.http.post<Response>('http://localhost:8080/test', null, { observe: 'response' });
+    const params = new HttpParams().append('recaptchaResponse', recaptchaResponse);
+    return this.http.post<Response>(AppProperties.SIGN_UP_ENDPOINT, body, { observe: 'response', params: params });
   }
 
 }

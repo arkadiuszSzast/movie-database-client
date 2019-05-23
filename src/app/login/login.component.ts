@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../core/auth.service';
 import { TokenStorage } from '../core/token.storage';
 import 'rxjs/add/operator/map';
+import { HttpParams } from '@angular/common/http';
+import { useAnimation } from '@angular/animations';
 
 @Component({
   selector: 'app-login',

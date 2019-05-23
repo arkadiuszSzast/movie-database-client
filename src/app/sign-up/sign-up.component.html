@@ -16,6 +16,15 @@
         <tr>
           <td>
             <mat-form-field class="example-full-width">
+              <input matInput formControlName="email" placeholder="Email" name="email" required>
+            </mat-form-field>
+            <mat-error *ngIf="hasError('email', 'required') && f.email.touched">Email is required</mat-error>
+            <mat-error *ngIf="hasError('email', 'email') && f.email.touched">Wrong email format</mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
               <input matInput formControlName="password" placeholder="Password" type="password" name="password"
                 minlength="8" required>
             </mat-form-field>

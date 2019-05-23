@@ -23,8 +23,9 @@
     </form>
     <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
   </mat-card-content>
+  <span class = "forgotPassword" routerLink="/forgot-password" color="primary">Forgot password?</span>
   <mat-card-actions>
-    <button mat-raised-button (click)="login()" color="primary">Login</button>
+    <button mat-raised-button (click)="login()">Login</button>
   </mat-card-actions>
   <mat-card-actions>
     <button mat-stroked-button routerLink="/sign-up" color="primary">SIGN UP NOW</button>
