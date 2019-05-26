@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../core/auth.service';
 import { TokenStorage } from '../core/token.storage';
 import 'rxjs/add/operator/map';
-import { HttpParams } from '@angular/common/http';
-import { useAnimation } from '@angular/animations';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -17,12 +16,18 @@ export class LoginComponent {
 
   username: string
   password: string
+  error: boolean;
 
   login(): void {
-    this.authService.attemptAuth(this.username, this.password).subscribe(res => {
-      this.tokenStorage.updateToken(res);
-      this.router.navigate(['user']);
-    });
-
+    this.authService.attemptAuth(this.username, this.password).subscribe(
+      (data: HttpResponse<Response>) => {
+        if(data.status == 200) {
+          this.tokenStorage.updateToken(data);
+          this.router.navigate(['user']);
+        }
+      },
+      (err: HttpErrorResponse) => {
+        this.error = true;
+      });
   }
 }

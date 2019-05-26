@@ -46,7 +46,7 @@ export class TokenInterceptor implements HttpInterceptor {
             });
         }
         else {
-          return Observable.of({});
+          throw err;
         }
       })
     )

@@ -1,4 +1,4 @@
-.example-icon {
+  .example-icon {
     padding: 0 14px;
   }
   
@@ -11,3 +11,7 @@
     font-size: small;
     cursor: pointer;
   }
+
+  .error {
+    color: red;
+}

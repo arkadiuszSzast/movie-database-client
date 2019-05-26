@@ -15,6 +15,5 @@ export class UserComponent implements OnInit {
   }
 
   test() {
-    this.authService.test().subscribe(res => console.log(res));
   }
 }

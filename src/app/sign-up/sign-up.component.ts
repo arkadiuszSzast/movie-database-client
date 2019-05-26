@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AuthService } from '../core/auth.service';
 import { IUserForm } from '../user/user-form.model';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from './mustMatch.validator';
-import { HttpParams } from '@angular/common/http';
+import { ReCaptcha2Component } from 'ngx-captcha';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import 'rxjs/add/operator/finally';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,6 +17,8 @@ export class SignUpComponent {
 
   registerForm: FormGroup;
   submitted: boolean = false;
+  error: string;
+  @ViewChild('captchaElem') captchaElem: ReCaptcha2Component;
 
   constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) { }
 
@@ -36,6 +40,10 @@ export class SignUpComponent {
     return this.registerForm.controls[controlName].hasError(errorName);
   }
 
+  reloadCaptcha(): void {
+    this.captchaElem.reloadCaptcha();
+}
+
   signUp(): void {
     this.submitted = true;
     if (this.registerForm.invalid) {
@@ -45,11 +53,25 @@ export class SignUpComponent {
     const user: IUserForm = { username: this.registerForm.get("username").value,
     email: this.registerForm.get("email").value,
     password: this.registerForm.get("password").value };
-    this.authService.signUp(user, recaptchaResponse).subscribe(res => {
-      if (res.status == 201) {
+    this.authService.signUp(user, recaptchaResponse)
+    .finally(() => {
+      this.registerForm.get("password").reset();
+      this.registerForm.get("confirmPassword").reset();
+      this.registerForm.get("recaptcha").reset();
+      this.resetCaptcha();
+    })
+    .subscribe(  
+    (data: HttpResponse<Response>) => {
+      if(data.status == 201) {
         this.router.navigate(['login']);
       }
+    },
+    (err: HttpErrorResponse) => {
+      this.error = err.error.message;
     });
   }
 
+  resetCaptcha(): void {
+    this.captchaElem.reloadCaptcha();
+  }
 }
