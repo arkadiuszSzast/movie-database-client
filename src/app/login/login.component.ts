@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../core/auth.service';
 import { TokenStorage } from '../core/token.storage';
@@ -8,7 +8,7 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
 
@@ -23,6 +23,8 @@ export class LoginComponent {
       (data: HttpResponse<Response>) => {
         if(data.status == 200) {
           this.tokenStorage.updateToken(data);
+          this.authService.emmitLoggedUsername.emit(this.authService.getLoggedUsername());
+          this.authService.emmitUserRoles.emit(this.authService.getUserRoles());
           this.router.navigate(['user']);
         }
       },
@@ -30,4 +32,6 @@ export class LoginComponent {
         this.error = true;
       });
   }
+
+
 }

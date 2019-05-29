@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { AuthService } from '../core/auth.service';
 import { IUserForm } from '../user/user-form.model';
 import { Router } from '@angular/router';
@@ -7,11 +7,12 @@ import { MustMatch } from './mustMatch.validator';
 import { ReCaptcha2Component } from 'ngx-captcha';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import 'rxjs/add/operator/finally';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent {
 

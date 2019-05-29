@@ -1,15 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpResponse, HttpParams, HttpHeaders, HttpEvent } from '@angular/common/http';
 import { TokenStorage } from './token.storage';
 import { AppProperties } from './app.properties';
 import { IUserForm } from '../user/user-form.model';
+import { TokenService } from './token.service';
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  constructor(private http: HttpClient, private tokenStorage: TokenStorage) {
+  @Output() emmitLoggedUsername: EventEmitter<String> = new EventEmitter();
+  @Output() emmitUserRoles: EventEmitter<String[]> = new EventEmitter();
+
+  constructor(private http: HttpClient, private tokenStorage: TokenStorage, private tokenService: TokenService) {
   }
 
   attemptAuth(username: string, password: string): Observable<HttpResponse<Response>> {
@@ -27,4 +31,32 @@ export class AuthService {
     return this.http.post<Response>(AppProperties.SIGN_UP_ENDPOINT, body, { observe: 'response', params: params });
   }
 
+  public test(): Observable<any> {
+    return this.http.get(AppProperties.USERS_ENDPOINT);
+  }
+
+  logout(): Observable<HttpResponse<Response>> {
+    const params = new HttpParams().append('token', this.tokenStorage.getToken());
+    return this.http.post<Response>(AppProperties.LOGOUT_ENDPOINT, {}, { observe: 'response', params: params });
+  }
+
+  isUserLogged(): boolean {
+    return this.tokenStorage.getToken() ? true : false;
+  }
+
+  getLoggedUsername(): String {
+    if(this.tokenStorage.getToken()) {
+      var user = this.tokenService.decodeToken(this.tokenStorage.getToken())
+      return user.username;
+    }
+    return null;
+  }
+
+  getUserRoles(): String[] {
+    if(this.tokenStorage.getToken()) {
+      var user = this.tokenService.decodeToken(this.tokenStorage.getToken())
+      return user.roles;
+    }
+    return null;
+  }
 }

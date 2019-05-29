@@ -62,9 +62,9 @@ export class TokenInterceptor implements HttpInterceptor {
 
   applyToken(req: HttpRequest<any>): HttpRequest<any> {
     if(this.tokenStorage.getToken()) {
-      req.headers.append('Authorization', this.tokenStorage.getToken())
+      const headers = req.headers.append('Authorization', this.tokenStorage.getToken())
+      return req.clone({headers: headers});
     }
-    
     return req;
   }
 }

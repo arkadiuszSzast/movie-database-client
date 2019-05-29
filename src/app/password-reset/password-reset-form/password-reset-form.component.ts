@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MustMatch } from 'src/app/sign-up/mustMatch.validator';
 import { PasswordResetService } from '../password-reset.service';
 import { ActivatedRoute } from '@angular/router';
-import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-password-reset-form',
   templateUrl: './password-reset-form.component.html',
-  styleUrls: ['./password-reset-form.component.css']
+  styleUrls: ['./password-reset-form.component.scss']
 })
 export class PasswordResetFormComponent implements OnInit {
   
@@ -20,7 +19,7 @@ export class PasswordResetFormComponent implements OnInit {
   ngOnInit() {
     this.route.queryParamMap.subscribe(queryParams => {
       this.token = queryParams.get("token")
-    })
+    });
     this.resetPasswordGroup = this.formBuilder.group({
       password: ['', Validators.required],
       confirmPassword: ['', [Validators.required]],

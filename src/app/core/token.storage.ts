@@ -16,6 +16,7 @@ export class TokenStorage {
 
   public signOut() {
     window.sessionStorage.removeItem(AppProperties.AUTHORIZATION_TOKEN_KEY);
+    window.sessionStorage.removeItem(AppProperties.REFRESH_TOKEN_KEY);
     window.sessionStorage.clear();
   }
 

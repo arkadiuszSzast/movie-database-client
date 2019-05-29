@@ -16,6 +16,9 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 import { ConfirmedComponent } from './sign-up/confirmed/confirmed.component';
 import { PasswordResetConfirmationComponent } from './password-reset/password-reset-confirmation/password-reset-confirmation.component';
 import { PasswordResetFormComponent } from './password-reset/password-reset-form/password-reset-form.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HasRoleDirective } from './directives/has-role-directive';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,8 @@ import { PasswordResetFormComponent } from './password-reset/password-reset-form
     PasswordResetComponent,
     PasswordResetConfirmationComponent,
     PasswordResetFormComponent,
+    NavbarComponent,
+     HasRoleDirective
   ],
   imports: [
     BrowserModule,
@@ -36,7 +41,8 @@ import { PasswordResetFormComponent } from './password-reset/password-reset-form
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxCaptchaModule
+    NgxCaptchaModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [
     {
