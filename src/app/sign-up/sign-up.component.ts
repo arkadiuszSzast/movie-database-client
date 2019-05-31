@@ -7,7 +7,8 @@ import { MustMatch } from './mustMatch.validator';
 import { ReCaptcha2Component } from 'ngx-captcha';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import 'rxjs/add/operator/finally';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
+import { takeUntil, first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-sign-up',
@@ -61,6 +62,7 @@ export class SignUpComponent {
       this.registerForm.get("recaptcha").reset();
       this.resetCaptcha();
     })
+    .pipe(first())
     .subscribe(  
     (data: HttpResponse<Response>) => {
       if(data.status == 201) {

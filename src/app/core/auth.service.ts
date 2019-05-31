@@ -31,10 +31,6 @@ export class AuthService {
     return this.http.post<Response>(AppProperties.SIGN_UP_ENDPOINT, body, { observe: 'response', params: params });
   }
 
-  public test(): Observable<any> {
-    return this.http.get(AppProperties.USERS_ENDPOINT);
-  }
-
   logout(): Observable<HttpResponse<Response>> {
     const params = new HttpParams().append('token', this.tokenStorage.getToken());
     return this.http.post<Response>(AppProperties.LOGOUT_ENDPOINT, {}, { observe: 'response', params: params });

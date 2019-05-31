@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../core/auth.service';
 import { TokenService } from '../core/token.service';
 import { TokenStorage } from '../core/token.storage';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user',
@@ -16,7 +18,4 @@ export class UserComponent implements OnInit {
   ngOnInit() {
   }
 
-  test() {
-    this.authService.test().subscribe(res => console.log(res));
-  }
 }

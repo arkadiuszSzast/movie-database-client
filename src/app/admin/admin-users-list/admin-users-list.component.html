@@ -1,0 +1,23 @@
+<div class="user-list-wrapper">
+    <app-admin-sidenav></app-admin-sidenav>
+    
+    <table mdbTable>
+        <thead>
+          <tr>
+            <th scope="col">username</th>
+            <th scope="col">email</th>
+            <th scope="col">roles</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr mdbTableCol *ngFor="let user of users">
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.roles}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button (click)="test()"></button>
+
+</div>

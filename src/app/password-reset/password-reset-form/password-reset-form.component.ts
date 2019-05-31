@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MustMatch } from 'src/app/sign-up/mustMatch.validator';
 import { PasswordResetService } from '../password-reset.service';
 import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil, first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-password-reset-form',
@@ -17,7 +19,7 @@ export class PasswordResetFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private passwordResetService: PasswordResetService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.queryParamMap.subscribe(queryParams => {
+    this.route.queryParamMap.pipe(first()).subscribe(queryParams => {
       this.token = queryParams.get("token")
     });
     this.resetPasswordGroup = this.formBuilder.group({
@@ -36,8 +38,7 @@ export class PasswordResetFormComponent implements OnInit {
 
   public resetPassword(): void {
     if(this.token) {
-      this.passwordResetService.resetPassword(this.resetPasswordGroup.get("password").value, this.token).subscribe();
+      this.passwordResetService.resetPassword(this.resetPasswordGroup.get("password").value, this.token).pipe(first()).subscribe();
     }
   }
-
 }

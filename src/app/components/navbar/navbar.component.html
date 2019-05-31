@@ -35,7 +35,7 @@
             <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt="" class="img-fluid rounded-circle z-depth-1 user-avatar"></a>
           <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
             <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
-            <a *appHasRole="'ADMIN'" class="dropdown-item waves-light" mdbWavesEffect href="#">Admin</a>
+            <a *appHasRole="'ADMIN'" routerLink="/admin/user-list" class="dropdown-item waves-light" mdbWavesEffect href="#">Admin</a>
             <a (click)="logout()" routerLink="/login" class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
           </div>
         </li>

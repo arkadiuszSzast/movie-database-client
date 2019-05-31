@@ -33,7 +33,9 @@ export class TokenInterceptor implements HttpInterceptor {
           }
           return this.authService.getNewToken()
             .pipe(tap(
-              (success) => { },
+              (success) => {  
+                this.tokenStorage.updateToken(success); 
+              },
               (error) => {
                 throw error;
               },
@@ -41,7 +43,6 @@ export class TokenInterceptor implements HttpInterceptor {
                 this.isRefreshingTokenInProgress = false;
               }
             )).mergeMap(res => {
-              this.tokenStorage.updateToken(res);
               return next.handle(this.applyToken(request));
             });
         }
@@ -62,7 +63,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
   applyToken(req: HttpRequest<any>): HttpRequest<any> {
     if(this.tokenStorage.getToken()) {
-      const headers = req.headers.append('Authorization', this.tokenStorage.getToken())
+      const headers = req.headers.set('Authorization', this.tokenStorage.getToken())
       return req.clone({headers: headers});
     }
     return req;

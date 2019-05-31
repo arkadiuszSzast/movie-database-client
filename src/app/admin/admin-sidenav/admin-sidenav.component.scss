@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+}
+
+.navbar {   
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;  
+    width: 100px;   
+    padding: 24px 0;
+    text-align: center;       
+}
+
+.menu-link {
+    width: 100%;
+    padding: 10px 5px;
+
+}
+
+.menu-link:hover {
+    background-color: #D2E1EC;
+    transition: 0.3s;
+}

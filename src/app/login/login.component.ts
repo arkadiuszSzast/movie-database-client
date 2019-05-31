@@ -4,6 +4,8 @@ import { AuthService } from '../core/auth.service';
 import { TokenStorage } from '../core/token.storage';
 import 'rxjs/add/operator/map';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Subject } from 'rxjs';
+import { takeUntil, first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +21,7 @@ export class LoginComponent {
   error: boolean;
 
   login(): void {
-    this.authService.attemptAuth(this.username, this.password).subscribe(
+    this.authService.attemptAuth(this.username, this.password).pipe(first()).subscribe(
       (data: HttpResponse<Response>) => {
         if(data.status == 200) {
           this.tokenStorage.updateToken(data);
@@ -32,6 +34,5 @@ export class LoginComponent {
         this.error = true;
       });
   }
-
 
 }

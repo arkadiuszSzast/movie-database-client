@@ -19,6 +19,8 @@ import { PasswordResetFormComponent } from './password-reset/password-reset-form
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HasRoleDirective } from './directives/has-role-directive';
+import { AdminSidenavComponent } from './admin/admin-sidenav/admin-sidenav.component';
+import { AdminUsersListComponent } from './admin/admin-users-list/admin-users-list.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { HasRoleDirective } from './directives/has-role-directive';
     PasswordResetConfirmationComponent,
     PasswordResetFormComponent,
     NavbarComponent,
-     HasRoleDirective
+     HasRoleDirective,
+     AdminSidenavComponent,
+     AdminUsersListComponent
   ],
   imports: [
     BrowserModule,
