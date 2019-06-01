@@ -11,6 +11,7 @@ import { ConfirmedComponent } from '../sign-up/confirmed/confirmed.component';
 import { PasswordResetConfirmationComponent } from '../password-reset/password-reset-confirmation/password-reset-confirmation.component';
 import { PasswordResetFormComponent } from '../password-reset/password-reset-form/password-reset-form.component';
 import { AdminUsersListComponent } from '../admin/admin-users-list/admin-users-list.component';
+import { RoleGuardService } from './guards/role-guard.service';
 
 const routes: Routes = [
   { path: 'user', component: UserComponent },
@@ -20,7 +21,12 @@ const routes: Routes = [
   { path: 'forgot-password', component: PasswordResetComponent },
   { path: 'forgot-password-confirmation', component: PasswordResetConfirmationComponent },
   { path: 'reset-password', component: PasswordResetFormComponent },
-  { path: 'admin/user-list', component: AdminUsersListComponent },
+  { path: 'admin/user-list', component: AdminUsersListComponent, 
+    canActivate: [RoleGuardService], 
+    data: { 
+      expectedRole: 'ADMIN'
+    }  
+  },
   { path: '', component: LoginComponent }
 ];
 

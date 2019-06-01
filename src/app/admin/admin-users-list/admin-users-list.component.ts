@@ -22,7 +22,6 @@ export class AdminUsersListComponent implements OnInit {
 
   test() {
     this.userService.getUsers().pipe(first()).subscribe(users => console.log(users));
-
   }
 
 }
