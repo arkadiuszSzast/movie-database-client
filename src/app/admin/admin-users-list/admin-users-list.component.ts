@@ -3,6 +3,10 @@ import { UserService } from './user.service';
 import { Subject } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { IUser } from './user-form.model';
+import { IRole } from './role.model';
+import { MatDialog, MatDialogConfig } from "@angular/material";
+import { RoleEditModalComponent } from './role-edit-modal/role-edit-modal.component';
+import { UserUpdateRolesService } from './user-update-roles.service';
 
 @Component({
   selector: 'app-admin-users-list',
@@ -11,17 +15,21 @@ import { IUser } from './user-form.model';
 })
 export class AdminUsersListComponent implements OnInit {
 
-  private _unsubscribe: Subject<void> = new Subject<void>();
   private users: IUser[];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,  private dialog: MatDialog, private userUpdateRoleService: UserUpdateRolesService) { }
 
   ngOnInit() {
     this.userService.getUsers().pipe(first()).subscribe(users => this.users = users);
   }
 
-  test() {
-    this.userService.getUsers().pipe(first()).subscribe(users => console.log(users));
+  showEditRoles(user: IUser) {
+    this.userUpdateRoleService.setUser(user);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.closeOnNavigation = true;
+    dialogConfig.width = "30%";
+    this.dialog.open(RoleEditModalComponent,dialogConfig);
   }
 
 }

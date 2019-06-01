@@ -21,6 +21,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HasRoleDirective } from './directives/has-role-directive';
 import { AdminSidenavComponent } from './admin/admin-sidenav/admin-sidenav.component';
 import { AdminUsersListComponent } from './admin/admin-users-list/admin-users-list.component';
+import { RoleEditModalComponent } from './admin/admin-users-list/role-edit-modal/role-edit-modal.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AdminUsersListComponent } from './admin/admin-users-list/admin-users-li
     NavbarComponent,
      HasRoleDirective,
      AdminSidenavComponent,
-     AdminUsersListComponent
+     AdminUsersListComponent,
+     RoleEditModalComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +57,7 @@ import { AdminUsersListComponent } from './admin/admin-users-list/admin-users-li
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [RoleEditModalComponent],
 })
 export class AppModule { }
