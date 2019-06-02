@@ -7,6 +7,7 @@ import { IRole } from './role.model';
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { RoleEditModalComponent } from './role-edit-modal/role-edit-modal.component';
 import { UserUpdateRolesService } from './user-update-roles.service';
+import { UserListService } from './user-list.service';
 
 @Component({
   selector: 'app-admin-users-list',
@@ -17,10 +18,10 @@ export class AdminUsersListComponent implements OnInit {
 
   private users: IUser[];
 
-  constructor(private userService: UserService,  private dialog: MatDialog, private userUpdateRoleService: UserUpdateRolesService) { }
+  constructor(private userService: UserService,  private dialog: MatDialog, private userUpdateRoleService: UserUpdateRolesService, private userListService: UserListService) { }
 
   ngOnInit() {
-    this.userService.getUsers().pipe(first()).subscribe(users => this.users = users);
+    this.userListService.fetchUsers();
   }
 
   showEditRoles(user: IUser) {

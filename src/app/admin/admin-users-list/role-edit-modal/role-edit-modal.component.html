@@ -1,3 +1,4 @@
+{{user.username}} roles
 <div *ngFor="let role of roles" class="custom-control custom-checkbox">
   <input type="checkbox" class="custom-control-input" id={{role.id}} [(ngModel)]="role.checked">
   <label class="custom-control-label" for={{role.id}}> {{role.role}} </label>
