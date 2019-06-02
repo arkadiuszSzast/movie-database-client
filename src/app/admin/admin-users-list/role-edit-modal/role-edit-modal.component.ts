@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { IRole } from '../role.model';
 import { UserService } from '../user.service';
 import { first } from 'rxjs/operators';
 import { IUser } from '../user-form.model';
-import { UserUpdateRolesService } from '../user-update-roles.service';
+import { UserUpdateService } from '../user-update.service';
 import { IRoleCheckbox } from './role-checkbox.model';
 import { MatDialogRef } from '@angular/material';
 import { NotificationService } from 'src/app/shared/notification.service';
@@ -20,13 +19,13 @@ export class RoleEditModalComponent implements OnInit {
   public user: IUser;
 
   constructor(private userService: UserService, 
-    private userUpdateRoleService: UserUpdateRolesService, 
-    public dialogRef: MatDialogRef<RoleEditModalComponent>,  
+    private userUpdateService: UserUpdateService, 
+    private dialogRef: MatDialogRef<RoleEditModalComponent>,  
     private notificationService: NotificationService,
     private userListService: UserListService) { }
 
   ngOnInit() {
-    this.user = this.userUpdateRoleService.user;
+    this.user = this.userUpdateService.user;
     this.userService.getRoles().pipe(first())
     .subscribe(roles => roles.forEach(role => this.roles.push({id: role.id, role: role.role, checked: this.user.roles.includes(role.role) ? true : false})));
   }
@@ -45,6 +44,6 @@ export class RoleEditModalComponent implements OnInit {
 
   onClose() {
     this.dialogRef.close();
-}
+  }
 
 }

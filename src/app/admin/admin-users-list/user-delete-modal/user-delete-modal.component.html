@@ -1,0 +1,10 @@
+<div class="modal-header d-flex justify-content-center">
+  <p class="heading">Are you sure?</p>
+</div>
+<div class="modal-body">
+  DELETE USER {{user.username}}?
+</div>
+<div class="modal-footer flex-center">
+  <a type="button" class="btn  btn-outline-danger" (click)="deleteUser()">Yes</a>
+  <a type="button" class="btn  btn-danger waves-effect" (click)="onClose()">No</a>
+</div>

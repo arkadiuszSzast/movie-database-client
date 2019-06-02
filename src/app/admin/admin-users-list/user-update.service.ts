@@ -4,7 +4,7 @@ import { IUser } from './user-form.model';
 @Injectable({
   providedIn: 'root'
 })
-export class UserUpdateRolesService {
+export class UserUpdateService {
 
   public user: IUser;
 

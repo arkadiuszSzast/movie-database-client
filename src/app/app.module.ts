@@ -22,6 +22,7 @@ import { HasRoleDirective } from './directives/has-role-directive';
 import { AdminSidenavComponent } from './admin/admin-sidenav/admin-sidenav.component';
 import { AdminUsersListComponent } from './admin/admin-users-list/admin-users-list.component';
 import { RoleEditModalComponent } from './admin/admin-users-list/role-edit-modal/role-edit-modal.component';
+import { UserDeleteModalComponent } from './admin/admin-users-list/user-delete-modal/user-delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -34,10 +35,11 @@ import { RoleEditModalComponent } from './admin/admin-users-list/role-edit-modal
     PasswordResetConfirmationComponent,
     PasswordResetFormComponent,
     NavbarComponent,
-     HasRoleDirective,
-     AdminSidenavComponent,
-     AdminUsersListComponent,
-     RoleEditModalComponent
+    HasRoleDirective,
+    AdminSidenavComponent,
+    AdminUsersListComponent,
+    RoleEditModalComponent,
+    UserDeleteModalComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +60,6 @@ import { RoleEditModalComponent } from './admin/admin-users-list/role-edit-modal
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [RoleEditModalComponent],
+  entryComponents: [RoleEditModalComponent, UserDeleteModalComponent],
 })
 export class AppModule { }

@@ -14,7 +14,8 @@
             <td>{{user.username}}</td>
             <td>{{user.email}}</td>
             <td>{{user.roles}}</td>
-            <td><button (click)="showEditRoles(user)">modify roles</button></td>
+            <td><button mat-icon-button (click)="showEditRoles(user)"><mat-icon>edit</mat-icon></button></td>
+            <td><button mat-icon-button (click)="showDeleteUser(user)"><mat-icon>delete_outline</mat-icon></button></td>
           </tr>
         </tbody>
       </table>

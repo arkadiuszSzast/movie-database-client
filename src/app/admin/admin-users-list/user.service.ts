@@ -23,4 +23,8 @@ export class UserService {
   public updateUserRoles(userId: string, roles: IRole[]): Observable<HttpResponse<Response>> {
     return this.http.put<Response>(AppProperties.UPDATE_USER_ROLES_ENDPOINT.replace('${userId}', userId), roles, { observe : 'response' });
   }
+
+  public deleteUser(userId: string): Observable<HttpResponse<Response>> {
+    return this.http.delete<Response>(AppProperties.DELETE_USER_ENDPOINT.replace('${userId}', userId), { observe : 'response' });
+  }
 }

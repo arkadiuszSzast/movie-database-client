@@ -1,8 +1,13 @@
-{{user.username}} roles
-<div *ngFor="let role of roles" class="custom-control custom-checkbox">
-  <input type="checkbox" class="custom-control-input" id={{role.id}} [(ngModel)]="role.checked">
-  <label class="custom-control-label" for={{role.id}}> {{role.role}} </label>
+<div class="modal-header d-flex justify-content-center">
+  <p class="heading">{{user.username}} roles</p>
 </div>
-
-<button type="button" (click)="updateRoles()" class="btn btn-primary">Save</button>
-<button type="button" (click)="onClose()" class="btn btn-light">Exit</button>
+<div class="modal-body">
+  <div *ngFor="let role of roles" class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id={{role.id}} [(ngModel)]="role.checked">
+    <label class="custom-control-label" for={{role.id}}> {{role.role}} </label>
+  </div>
+</div>
+<div class="modal-footer flex-center">
+  <button type="button" (click)="updateRoles()" class="btn btn-primary">Save</button>
+  <button type="button" (click)="onClose()" class="btn btn-light">Exit</button>
+</div>

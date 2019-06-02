@@ -22,4 +22,8 @@ export class UserListService {
       this.users[index] = user;
     }
   }
+
+  public deleteUser(user: IUser) {
+    this.users = this.users.filter(u => u.id != user.id);
+  }
 }
