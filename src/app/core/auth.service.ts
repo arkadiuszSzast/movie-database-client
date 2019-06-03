@@ -32,8 +32,7 @@ export class AuthService {
   }
 
   logout(): Observable<HttpResponse<Response>> {
-    const params = new HttpParams().append('token', this.tokenStorage.getToken());
-    return this.http.post<Response>(AppProperties.LOGOUT_ENDPOINT, {}, { observe: 'response', params: params });
+    return this.http.post<Response>(AppProperties.LOGOUT_ENDPOINT, {}, { observe: 'response' });
   }
 
   isUserLogged(): boolean {
