@@ -1,0 +1,21 @@
+<div class="category-list-wrapper">
+  <app-admin-sidenav></app-admin-sidenav>
+  
+  <div>
+    <button (click)="addCategory()">Add category</button>
+    <table mdbTable>
+      <thead>
+        <tr>
+          <th scope="col">category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr mdbTableCol *ngFor="let category of categoryListService.categories">
+          <td>{{category.category}}</td>
+          <td><button mat-icon-button (click)="showDeleteCategory(category)"><mat-icon>delete_outline</mat-icon></button></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

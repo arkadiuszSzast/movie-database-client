@@ -11,6 +11,7 @@ import { PasswordResetFormComponent } from '../modules/password-reset/password-r
 import { AdminUsersListComponent } from '../modules/admin/admin-users-list/admin-users-list.component';
 import { ActorListComponent } from '../modules/admin/actor-list/actor-list.component';
 import { DirectorListComponent } from '../modules/admin/director-list/director-list.component';
+import { CategoryListComponent } from '../modules/admin/category-list/category-list.component';
 
 const routes: Routes = [
   { path: 'user', component: UserComponent },
@@ -20,6 +21,13 @@ const routes: Routes = [
   { path: 'forgot-password', component: PasswordResetComponent },
   { path: 'forgot-password-confirmation', component: PasswordResetConfirmationComponent },
   { path: 'reset-password', component: PasswordResetFormComponent },
+  {
+    path: 'admin/category-list', component: CategoryListComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: 'ADMIN'
+    }
+  },
   {
     path: 'admin/actor-list', component: ActorListComponent,
     canActivate: [RoleGuardService],

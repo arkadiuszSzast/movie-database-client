@@ -14,6 +14,8 @@ export class AppProperties {
     public static UPDATE_USER_ROLES_ENDPOINT = AppProperties.API_ENDPOINT + 'users/${userId}/roles';
     public static DELETE_USER_ENDPOINT = AppProperties.API_ENDPOINT + 'users/${userId}';
     public static ROLES_ENDPOINT = AppProperties.API_ENDPOINT + 'roles';
+    public static CATEGORIES_ENDPOINT = AppProperties.API_ENDPOINT + 'categories';
+    public static DELETE_CATEGORY_ENDPOINT = AppProperties.API_ENDPOINT + 'categories/${categoryId}';
     public static RESET_PASSWORD_ENDPOINT = AppProperties.API_ENDPOINT + 'reset-password';
     public static RESET_PASSWORD_MAIL_REQUEST_ENDPOINT = AppProperties.API_ENDPOINT + 'reset-password/mail';
 }

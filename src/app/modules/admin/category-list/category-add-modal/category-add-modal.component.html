@@ -1,0 +1,14 @@
+<legend>ADD CATEGORY</legend>
+<form [formGroup]="categoryAddForm" class="example-form">
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <input matInput formControlName="category" placeholder="Category" name="category" required>
+          </mat-form-field>
+          <mat-error *ngIf="hasError('category', 'required') && f.category.touched">Category is required</mat-error>
+        </td>
+      </tr>
+      <button mat-raised-button (click)="create()" color="primary" [disabled]="!categoryAddForm.valid">Add category</button>
+    </table>
+  </form>
