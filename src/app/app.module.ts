@@ -25,6 +25,10 @@ import { RoleEditModalComponent } from './modules/admin/admin-users-list/role-ed
 import { UserDeleteModalComponent } from './modules/admin/admin-users-list/user-delete-modal/user-delete-modal.component';
 import { ActorListComponent } from './modules/admin/actor-list/actor-list.component';
 import { ActorAddModalComponent } from './modules/admin/actor-list/actor-add-modal/actor-add-modal.component';
+import { DirectorListComponent } from './modules/admin/director-list/director-list.component';
+import { DirectorAddModalComponent } from './modules/admin/director-list/director-add-modal/director-add-modal.component';
+import { DirectorDeleteModalComponent } from './modules/admin/director-list/director-delete-modal/director-delete-modal.component';
+import { ActorDeleteModalComponent } from './modules/admin/actor-list/actor-delete-modal/actor-delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +47,11 @@ import { ActorAddModalComponent } from './modules/admin/actor-list/actor-add-mod
     RoleEditModalComponent,
     UserDeleteModalComponent,
     ActorListComponent,
-    ActorAddModalComponent
+    ActorAddModalComponent,
+    DirectorListComponent,
+    DirectorAddModalComponent,
+    DirectorDeleteModalComponent,
+    ActorDeleteModalComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +72,6 @@ import { ActorAddModalComponent } from './modules/admin/actor-list/actor-add-mod
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [RoleEditModalComponent, UserDeleteModalComponent, ActorAddModalComponent],
+  entryComponents: [RoleEditModalComponent, UserDeleteModalComponent, ActorAddModalComponent, DirectorAddModalComponent, DirectorDeleteModalComponent, ActorDeleteModalComponent],
 })
 export class AppModule { }

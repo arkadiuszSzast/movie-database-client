@@ -5,6 +5,8 @@ import { first } from 'rxjs/operators';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { ActorAddModalComponent } from './actor-add-modal/actor-add-modal.component';
 import { ActorListService } from './actor-list.service';
+import { ActorUpdateService } from './actor-update.service';
+import { ActorDeleteModalComponent } from './actor-delete-modal/actor-delete-modal.component';
 
 @Component({
   selector: 'app-actor-list',
@@ -13,7 +15,7 @@ import { ActorListService } from './actor-list.service';
 })
 export class ActorListComponent implements OnInit {
 
-  constructor(private dialog: MatDialog, private actorListService: ActorListService) { }
+  constructor(private dialog: MatDialog, private actorListService: ActorListService, private actorUpdateService: ActorUpdateService) { }
 
   ngOnInit() {
     this.actorListService.fetchActors();
@@ -25,6 +27,15 @@ export class ActorListComponent implements OnInit {
     dialogConfig.closeOnNavigation = true;
     dialogConfig.width = "30%";
     this.dialog.open(ActorAddModalComponent,dialogConfig);
+  }
+
+  showDeleteActor(actor: IActor) {
+    this.actorUpdateService.setActor(actor);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.closeOnNavigation = true;
+    dialogConfig.width = "30%";
+    this.dialog.open(ActorDeleteModalComponent,dialogConfig);
   }
 
 }

@@ -1,4 +1,4 @@
-<div class="user-list-wrapper">
+<div class="actor-list-wrapper">
   <app-admin-sidenav></app-admin-sidenav>
   
   <div>
@@ -14,6 +14,7 @@
         <tr mdbTableCol *ngFor="let actor of actorListService.actors">
           <td>{{actor.name}}</td>
           <td>{{actor.surname}}</td>
+          <td><button mat-icon-button (click)="showDeleteActor(actor)"><mat-icon>delete_outline</mat-icon></button></td>
         </tr>
       </tbody>
     </table>

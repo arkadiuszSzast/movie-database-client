@@ -22,4 +22,8 @@ export class ActorService {
     } as IActor;
     return this.http.post<Response>(AppProperties.ACTORS_ENDPOINT, actor, { observe : 'response' });
   }
+
+  public deleteActor(actorId: string): Observable<HttpResponse<Response>> {
+    return this.http.delete<Response>(AppProperties.DELETE_ACTOR_ENDPOINT.replace('${actorId}', actorId), { observe : 'response' });
+  }
 }

@@ -15,4 +15,9 @@ export class ActorListService {
   public fetchActors() {
     this.actorService.getActors().pipe(first()).subscribe(actors => this.actors = actors);
  }
+
+  public deleteActor(actor: IActor) {
+    this.actors = this.actors.filter(u => u.id != actor.id);
+  }
+
 }

@@ -6,6 +6,7 @@ import { RoleEditModalComponent } from '../role-edit-modal/role-edit-modal.compo
 import { UserService } from '../user.service';
 import { NotificationService } from 'src/app/shared/notification.service';
 import { UserListService } from '../user-list.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-delete-modal',
@@ -28,7 +29,7 @@ export class UserDeleteModalComponent implements OnInit {
   }
 
   deleteUser() {
-    this.userService.deleteUser(this.user.id).subscribe(res => {
+    this.userService.deleteUser(this.user.id).pipe(first()).subscribe(res => {
       if(res.status == 200) {
         this.userListService.deleteUser(this.user);
         this.notificationService.success('User deleted');
