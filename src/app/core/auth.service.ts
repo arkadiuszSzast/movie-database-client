@@ -3,8 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpResponse, HttpParams, HttpHeaders, HttpEvent } from '@angular/common/http';
 import { TokenStorage } from './token.storage';
 import { AppProperties } from './app.properties';
-import { IUserForm } from '../user/user-form.model';
 import { TokenService } from './token.service';
+import { IUserForm } from '../modules/user/user-form.model';
 
 
 @Injectable({ providedIn: 'root' })

@@ -1,17 +1,15 @@
-
-import { UserComponent } from '../user/user.component';
-
-import { LoginComponent } from '../login/login.component';
-
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SignUpComponent } from '../sign-up/sign-up.component';
-import { PasswordResetComponent } from '../password-reset/password-reset.component';
-import { ConfirmedComponent } from '../sign-up/confirmed/confirmed.component';
-import { PasswordResetConfirmationComponent } from '../password-reset/password-reset-confirmation/password-reset-confirmation.component';
-import { PasswordResetFormComponent } from '../password-reset/password-reset-form/password-reset-form.component';
-import { AdminUsersListComponent } from '../admin/admin-users-list/admin-users-list.component';
 import { RoleGuardService } from './guards/role-guard.service';
+import { UserComponent } from '../modules/user/user.component';
+import { LoginComponent } from '../modules/login/login.component';
+import { SignUpComponent } from '../modules/sign-up/sign-up.component';
+import { ConfirmedComponent } from '../modules/sign-up/confirmed/confirmed.component';
+import { PasswordResetComponent } from '../modules/password-reset/password-reset.component';
+import { PasswordResetConfirmationComponent } from '../modules/password-reset/password-reset-confirmation/password-reset-confirmation.component';
+import { PasswordResetFormComponent } from '../modules/password-reset/password-reset-form/password-reset-form.component';
+import { AdminUsersListComponent } from '../modules/admin/admin-users-list/admin-users-list.component';
+import { ActorListComponent } from '../modules/admin/actor-list/actor-list.component';
 
 const routes: Routes = [
   { path: 'user', component: UserComponent },
@@ -21,6 +19,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: PasswordResetComponent },
   { path: 'forgot-password-confirmation', component: PasswordResetConfirmationComponent },
   { path: 'reset-password', component: PasswordResetFormComponent },
+  { path: 'admin/actor-list', component: ActorListComponent },
   { path: 'admin/user-list', component: AdminUsersListComponent, 
     canActivate: [RoleGuardService], 
     data: { 

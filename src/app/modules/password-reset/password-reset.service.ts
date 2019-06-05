@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AppProperties } from '../core/app.properties';
+import { AppProperties } from 'src/app/core/app.properties';
 
 @Injectable({ providedIn: 'root' })
 export class PasswordResetService {

@@ -1,0 +1,21 @@
+<form [formGroup]="actorAddForm" class="example-form">
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="name" placeholder="Name" name="name" required>
+        </mat-form-field>
+        <mat-error *ngIf="hasError('name', 'required') && f.name.touched">Name is required</mat-error>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="surname" placeholder="Surname" name="surname" required>
+        </mat-form-field>
+        <mat-error *ngIf="hasError('surname', 'required') && f.surname.touched">Surname is required</mat-error>
+      </td>
+    </tr>
+    <button mat-raised-button (click)="create()" color="primary" [disabled]="!actorAddForm.valid">Add actor</button>
+  </table>
+</form>

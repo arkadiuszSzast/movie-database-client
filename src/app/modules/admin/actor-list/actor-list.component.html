@@ -1,0 +1,22 @@
+<div class="user-list-wrapper">
+  <app-admin-sidenav></app-admin-sidenav>
+  
+  <div>
+    <button (click)="addActor()">Add actor</button>
+    <table mdbTable>
+      <thead>
+        <tr>
+          <th scope="col">name</th>
+          <th scope="col">surname</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr mdbTableCol *ngFor="let actor of actorListService.actors">
+          <td>{{actor.name}}</td>
+          <td>{{actor.surname}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

@@ -17,8 +17,6 @@ import { UserDeleteModalComponent } from './user-delete-modal/user-delete-modal.
 })
 export class AdminUsersListComponent implements OnInit {
 
-  private users: IUser[];
-
   constructor(private dialog: MatDialog, private userUpdateService: UserUpdateService, private userListService: UserListService) { }
 
   ngOnInit() {

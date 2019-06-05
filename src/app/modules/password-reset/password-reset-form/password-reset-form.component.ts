@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MustMatch } from 'src/app/sign-up/mustMatch.validator';
 import { PasswordResetService } from '../password-reset.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil, first } from 'rxjs/operators';
+import { MustMatch } from '../../sign-up/mustMatch.validator';
 
 @Component({
   selector: 'app-password-reset-form',

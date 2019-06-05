@@ -7,6 +7,7 @@ export class AppProperties {
     public static REFRESH_ENDPOINT = AppProperties.API_ENDPOINT + 'auth/refresh';
     public static SIGN_UP_ENDPOINT = AppProperties.API_ENDPOINT + 'users/sign-up';
     public static USERS_ENDPOINT = AppProperties.API_ENDPOINT + 'users';
+    public static ACTORS_ENDPOINT = AppProperties.API_ENDPOINT + 'actors';
     public static UPDATE_USER_ROLES_ENDPOINT = AppProperties.API_ENDPOINT + 'users/${userId}/roles';
     public static DELETE_USER_ENDPOINT = AppProperties.API_ENDPOINT + 'users/${userId}';
     public static ROLES_ENDPOINT = AppProperties.API_ENDPOINT + 'roles';

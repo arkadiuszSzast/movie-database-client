@@ -1,11 +1,11 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../core/auth.service';
-import { TokenStorage } from '../core/token.storage';
 import 'rxjs/add/operator/map';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { takeUntil, first } from 'rxjs/operators';
+import { AuthService } from 'src/app/core/auth.service';
+import { TokenStorage } from 'src/app/core/token.storage';
 
 @Component({
   selector: 'app-login',

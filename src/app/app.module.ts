@@ -4,25 +4,27 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppRoutingModule } from './core/app.routing.module';
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
-import { LoginComponent } from './login/login.component';
 import { CustomMaterialModule } from './core/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './core/app.interceptor';
-import { SignUpComponent } from './sign-up/sign-up.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
-import { PasswordResetComponent } from './password-reset/password-reset.component';
-import { ConfirmedComponent } from './sign-up/confirmed/confirmed.component';
-import { PasswordResetConfirmationComponent } from './password-reset/password-reset-confirmation/password-reset-confirmation.component';
-import { PasswordResetFormComponent } from './password-reset/password-reset-form/password-reset-form.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HasRoleDirective } from './directives/has-role-directive';
-import { AdminSidenavComponent } from './admin/admin-sidenav/admin-sidenav.component';
-import { AdminUsersListComponent } from './admin/admin-users-list/admin-users-list.component';
-import { RoleEditModalComponent } from './admin/admin-users-list/role-edit-modal/role-edit-modal.component';
-import { UserDeleteModalComponent } from './admin/admin-users-list/user-delete-modal/user-delete-modal.component';
+import { UserComponent } from './modules/user/user.component';
+import { LoginComponent } from './modules/login/login.component';
+import { SignUpComponent } from './modules/sign-up/sign-up.component';
+import { ConfirmedComponent } from './modules/sign-up/confirmed/confirmed.component';
+import { PasswordResetComponent } from './modules/password-reset/password-reset.component';
+import { PasswordResetConfirmationComponent } from './modules/password-reset/password-reset-confirmation/password-reset-confirmation.component';
+import { PasswordResetFormComponent } from './modules/password-reset/password-reset-form/password-reset-form.component';
+import { AdminSidenavComponent } from './modules/admin/admin-sidenav/admin-sidenav.component';
+import { AdminUsersListComponent } from './modules/admin/admin-users-list/admin-users-list.component';
+import { RoleEditModalComponent } from './modules/admin/admin-users-list/role-edit-modal/role-edit-modal.component';
+import { UserDeleteModalComponent } from './modules/admin/admin-users-list/user-delete-modal/user-delete-modal.component';
+import { ActorListComponent } from './modules/admin/actor-list/actor-list.component';
+import { ActorAddModalComponent } from './modules/admin/actor-list/actor-add-modal/actor-add-modal.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { UserDeleteModalComponent } from './admin/admin-users-list/user-delete-m
     AdminSidenavComponent,
     AdminUsersListComponent,
     RoleEditModalComponent,
-    UserDeleteModalComponent
+    UserDeleteModalComponent,
+    ActorListComponent,
+    ActorAddModalComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +64,6 @@ import { UserDeleteModalComponent } from './admin/admin-users-list/user-delete-m
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [RoleEditModalComponent, UserDeleteModalComponent],
+  entryComponents: [RoleEditModalComponent, UserDeleteModalComponent, ActorAddModalComponent],
 })
 export class AppModule { }

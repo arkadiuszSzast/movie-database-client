@@ -1,5 +1,4 @@
 import { Component, ViewChild, OnDestroy } from '@angular/core';
-import { AuthService } from '../core/auth.service';
 import { IUserForm } from '../user/user-form.model';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -9,6 +8,7 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import 'rxjs/add/operator/finally';
 import { Subscription, Subject } from 'rxjs';
 import { takeUntil, first } from 'rxjs/operators';
+import { AuthService } from 'src/app/core/auth.service';
 
 @Component({
   selector: 'app-sign-up',
