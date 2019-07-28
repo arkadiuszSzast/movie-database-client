@@ -1,0 +1,48 @@
+<legend>ADD MOVIE</legend>
+<form [formGroup]="movieAddForm" class="example-form">
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <div class="row">
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="title" placeholder="Title" name="title" required>
+        </mat-form-field>
+        </div>
+        <div class="row">
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="description" placeholder="Description" name="description" required>
+        </mat-form-field>
+        </div>
+        <div class="row">
+        <mat-form-field>
+          <mat-label>Categories</mat-label>
+          <mat-select formControlName="categories" placeholder="Categories" name="categories" required multiple>
+            <mat-option *ngFor="let category of categories" [value]="category.id">{{category.category}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        </div>
+        <div class="row">
+        <mat-form-field>
+          <mat-label>Directors</mat-label>
+          <mat-select formControlName="directors" placeholder="Directors" name="directors" required multiple>
+            <mat-option *ngFor="let director of directors" [value]="director.id">{{director.name}} {{director.surname}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        </div>
+        <div class="row">
+        <mat-form-field>
+          <mat-label>Actors</mat-label>
+          <mat-select formControlName="actors" placeholder="Actors" name="actors" required multiple>
+            <mat-option *ngFor="let actor of actors" [value]="actor.id">{{actor.name}} {{actor.surname}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        </div>
+        <mat-error *ngIf="hasError('title', 'required') && f.title.touched">Title is required</mat-error>
+        <mat-error *ngIf="hasError('description', 'required') && f.description.touched">Description is required</mat-error>
+        <mat-error *ngIf="hasError('categories', 'required') && f.categories.touched">Categories are required</mat-error>
+        <mat-error *ngIf="hasError('directors', 'required') && f.directors.touched">Directors are required</mat-error>
+        <mat-error *ngIf="hasError('actors', 'required') && f.actors.touched">Actors are required</mat-error>
+      </td>
+    </tr>
+    <button mat-raised-button (click)="create()" color="primary" [disabled]="!movieAddForm.valid">Add movie</button>
+  </table>

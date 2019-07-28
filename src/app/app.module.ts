@@ -32,6 +32,9 @@ import { ActorDeleteModalComponent } from './modules/admin/actor-list/actor-dele
 import { CategoryListComponent } from './modules/admin/category-list/category-list.component';
 import { CategoryAddModalComponent } from './modules/admin/category-list/category-add-modal/category-add-modal.component';
 import { CategoryDeleteModalComponent } from './modules/admin/category-list/category-delete-modal/category-delete-modal.component';
+import { MovieListComponent } from './modules/admin/movie-list/movie-list.component';
+import { MovieAddModalComponent } from './modules/admin/movie-list/movie-add-modal/movie-add-modal/movie-add-modal.component';
+import { MovieDeleteModalComponent } from './modules/admin/movie-list/movie-delete-modal/movie-delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,10 @@ import { CategoryDeleteModalComponent } from './modules/admin/category-list/cate
     ActorDeleteModalComponent,
     CategoryListComponent,
     CategoryAddModalComponent,
-    CategoryDeleteModalComponent
+    CategoryDeleteModalComponent,
+    MovieListComponent,
+    MovieAddModalComponent,
+    MovieDeleteModalComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +92,9 @@ import { CategoryDeleteModalComponent } from './modules/admin/category-list/cate
     DirectorDeleteModalComponent, 
     ActorDeleteModalComponent,
     CategoryAddModalComponent,
-    CategoryDeleteModalComponent
+    CategoryDeleteModalComponent,
+    MovieAddModalComponent,
+    MovieDeleteModalComponent
   ],
 
 })

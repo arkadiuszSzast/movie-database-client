@@ -18,4 +18,6 @@ export class AppProperties {
     public static DELETE_CATEGORY_ENDPOINT = AppProperties.API_ENDPOINT + 'categories/${categoryId}';
     public static RESET_PASSWORD_ENDPOINT = AppProperties.API_ENDPOINT + 'reset-password';
     public static RESET_PASSWORD_MAIL_REQUEST_ENDPOINT = AppProperties.API_ENDPOINT + 'reset-password/mail';
+    public static MOVIES_ENDPOINT = AppProperties.API_ENDPOINT + 'movies';
+    public static DELETE_MOVIE_ENDPOINT = AppProperties.API_ENDPOINT + 'movies/${movieId}'
 }

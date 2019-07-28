@@ -12,6 +12,7 @@ import { AdminUsersListComponent } from '../modules/admin/admin-users-list/admin
 import { ActorListComponent } from '../modules/admin/actor-list/actor-list.component';
 import { DirectorListComponent } from '../modules/admin/director-list/director-list.component';
 import { CategoryListComponent } from '../modules/admin/category-list/category-list.component';
+import { MovieListComponent } from '../modules/admin/movie-list/movie-list.component';
 
 const routes: Routes = [
   { path: 'user', component: UserComponent },
@@ -44,6 +45,13 @@ const routes: Routes = [
   },
   {
     path: 'admin/user-list', component: AdminUsersListComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: 'ADMIN'
+    }
+  },
+  {
+    path: 'admin/movie-list', component: MovieListComponent,
     canActivate: [RoleGuardService],
     data: {
       expectedRole: 'ADMIN'

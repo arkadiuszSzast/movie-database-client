@@ -20,15 +20,15 @@
           </td>
         </tr>
       </table>
+      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+      <p class="error" *ngIf="error==true">Invalid username or password</p>
+      <span class="forgotPassword" routerLink="/forgot-password" color="primary">Forgot password?</span>
+      <mat-card-actions>
+        <button type="submit" mat-raised-button (click)="login()">Login</button>
+      </mat-card-actions>
+      <mat-card-actions>
+        <button mat-stroked-button routerLink="/sign-up" color="primary">SIGN UP NOW</button>
+      </mat-card-actions>
     </form>
-    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
-    <p class="error" *ngIf="error==true">Invalid username or password</p>
   </mat-card-content>
-  <span class = "forgotPassword" routerLink="/forgot-password" color="primary">Forgot password?</span>
-  <mat-card-actions>
-    <button mat-raised-button (click)="login()">Login</button>
-  </mat-card-actions>
-  <mat-card-actions>
-    <button mat-stroked-button routerLink="/sign-up" color="primary">SIGN UP NOW</button>
-  </mat-card-actions>
 </mat-card>

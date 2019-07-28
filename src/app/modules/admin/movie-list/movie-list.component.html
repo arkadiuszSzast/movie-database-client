@@ -1,0 +1,25 @@
+<div class="movie-list-wrapper">
+  <app-admin-sidenav></app-admin-sidenav>
+  
+  <div>
+    <button (click)="addMovie()">Add movie</button>
+    <table mdbTable>
+      <thead>
+        <tr>
+          <th scope="col">movie</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr mdbTableCol *ngFor="let movie of movieListService.movies">
+          <td>{{movie.title}}</td>
+          <td>{{movie.description}}</td>
+          <td><span *ngFor= "let category of movie.categories">{{category.category}}, </span></td>
+          <td><span *ngFor= "let director of movie.directors">{{director.name}} {{director.surname}}</span></td>
+          <td><span *ngFor= "let actor of movie.actors">{{actor.name}} {{actor.surname}}</span></td>
+          <td><button mat-icon-button (click)="showDeleteMovie(movie)"><mat-icon>delete_outline</mat-icon></button></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
