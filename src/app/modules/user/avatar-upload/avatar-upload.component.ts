@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AvatarUploadService } from './avatar-upload.service';
 import { first } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/auth.service';
-import { TokenStorage } from 'src/app/core/token.storage';
-import { TokenService } from 'src/app/core/token.service';
 
 @Component({
   selector: 'app-avatar-upload',
