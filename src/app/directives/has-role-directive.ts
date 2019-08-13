@@ -1,8 +1,5 @@
 import { Directive, OnInit, OnDestroy, Input, ViewContainerRef, TemplateRef } from '@angular/core';
 
-import { Subject } from 'rxjs';
-
-import { takeUntil } from 'rxjs/operators';
 import { AuthService } from '../core/auth.service';
 
 @Directive({

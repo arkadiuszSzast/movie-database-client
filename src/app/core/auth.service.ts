@@ -5,6 +5,7 @@ import { TokenStorage } from './token.storage';
 import { AppProperties } from './app.properties';
 import { TokenService } from './token.service';
 import { IUserForm } from '../modules/user/user-form.model';
+import { first } from 'rxjs/operators';
 
 
 @Injectable({ providedIn: 'root' })
@@ -24,6 +25,10 @@ export class AuthService {
   getNewToken(): Observable<HttpResponse<Response>> {
     const headers = new HttpHeaders().append('Refresh-token', this.tokenStorage.getRefreshToken());
     return this.http.post<Response>(AppProperties.REFRESH_ENDPOINT, {}, { observe: 'response', headers: headers });
+  }
+
+  getNewTokenAndSave() {
+    this.getNewToken().pipe(first()).subscribe(token => this.tokenStorage.updateToken(token));
   }
 
   signUp(body: IUserForm, recaptchaResponse: string): Observable<HttpResponse<Response>> {
@@ -51,6 +56,14 @@ export class AuthService {
     if(this.tokenStorage.getToken()) {
       var user = this.tokenService.decodeToken(this.tokenStorage.getToken())
       return user.roles;
+    }
+    return null;
+  }
+
+  getUserAvatar(): String {
+    if(this.tokenStorage.getToken()) {
+      var user = this.tokenService.decodeToken(this.tokenStorage.getToken())
+      return user.avatar;
     }
     return null;
   }

@@ -11,5 +11,4 @@ export class TokenService {
     const jwtHelper = new JwtHelperService(); 
     return jwtHelper.decodeToken(token);
   }
-
 }

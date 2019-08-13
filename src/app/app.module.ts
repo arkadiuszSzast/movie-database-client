@@ -35,6 +35,7 @@ import { CategoryDeleteModalComponent } from './modules/admin/category-list/cate
 import { MovieListComponent } from './modules/admin/movie-list/movie-list.component';
 import { MovieAddModalComponent } from './modules/admin/movie-list/movie-add-modal/movie-add-modal/movie-add-modal.component';
 import { MovieDeleteModalComponent } from './modules/admin/movie-list/movie-delete-modal/movie-delete-modal.component';
+import { AvatarUploadComponent } from './modules/user/avatar-upload/avatar-upload.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { MovieDeleteModalComponent } from './modules/admin/movie-list/movie-dele
     CategoryDeleteModalComponent,
     MovieListComponent,
     MovieAddModalComponent,
-    MovieDeleteModalComponent
+    MovieDeleteModalComponent,
+    AvatarUploadComponent
   ],
   imports: [
     BrowserModule,

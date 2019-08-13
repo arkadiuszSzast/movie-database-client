@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/core/auth.service';
 import { TokenStorage } from 'src/app/core/token.storage';
 import { Subject } from 'rxjs';
 import { takeUntil, first } from 'rxjs/operators';
+import { AppProperties } from 'src/app/core/app.properties';
 
 @Component({
   selector: 'app-navbar',
@@ -29,6 +30,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   logout() {
     this.authService.logout().pipe(first()).subscribe(() => this.tokenStorage.signOut());
     this.isUserLogged = false;
+  }
+
+  getAvatarUrl(): String {
+    return AppProperties.AVATAR_ENDPOINT + this.authService.getUserAvatar();
   }
 
   public ngOnDestroy(): void {

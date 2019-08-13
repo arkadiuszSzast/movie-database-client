@@ -1,7 +1,8 @@
 export class AppProperties {
     public static AUTHORIZATION_TOKEN_KEY = 'Authorization';
     public static REFRESH_TOKEN_KEY = 'Refresh-token'
-    public static API_ENDPOINT = 'http://localhost:8080/api/';
+    public static APP_URL = 'http://localhost:8080/'
+    public static API_ENDPOINT =  AppProperties.APP_URL + 'api/';
     public static LOGIN_ENDPOINT = AppProperties.API_ENDPOINT + 'auth/login';
     public static LOGOUT_ENDPOINT = AppProperties.API_ENDPOINT + 'auth/logout';
     public static REFRESH_ENDPOINT = AppProperties.API_ENDPOINT + 'auth/refresh';
@@ -19,5 +20,7 @@ export class AppProperties {
     public static RESET_PASSWORD_ENDPOINT = AppProperties.API_ENDPOINT + 'reset-password';
     public static RESET_PASSWORD_MAIL_REQUEST_ENDPOINT = AppProperties.API_ENDPOINT + 'reset-password/mail';
     public static MOVIES_ENDPOINT = AppProperties.API_ENDPOINT + 'movies';
-    public static DELETE_MOVIE_ENDPOINT = AppProperties.API_ENDPOINT + 'movies/${movieId}'
+    public static DELETE_MOVIE_ENDPOINT = AppProperties.API_ENDPOINT + 'movies/${movieId}';
+    public static AVATAR_UPLOAD_ENDPOINT = AppProperties.API_ENDPOINT + 'user/avatar'
+    public static AVATAR_ENDPOINT = AppProperties.APP_URL + 'avatars/'
 }

@@ -32,9 +32,10 @@
       <ul class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item avatar dropdown" dropdown>
           <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-            <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt="" class="img-fluid rounded-circle z-depth-1 user-avatar"></a>
+            <img src={{getAvatarUrl()}} alt="" class="img-fluid rounded-circle z-depth-1 user-avatar"></a>
           <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
             <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+            <a *ngIf='isUserLogged' class="dropdown-item waves-light" mdbWavesEffect routerLink="user/avatar/upload">Change avatar</a>
             <a *appHasRole="'ADMIN'" routerLink="/admin/user-list" class="dropdown-item waves-light" mdbWavesEffect href="#">Admin</a>
             <a (click)="logout()" routerLink="/login" class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
           </div>

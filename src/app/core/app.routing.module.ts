@@ -13,6 +13,8 @@ import { ActorListComponent } from '../modules/admin/actor-list/actor-list.compo
 import { DirectorListComponent } from '../modules/admin/director-list/director-list.component';
 import { CategoryListComponent } from '../modules/admin/category-list/category-list.component';
 import { MovieListComponent } from '../modules/admin/movie-list/movie-list.component';
+import { AvatarUploadComponent } from '../modules/user/avatar-upload/avatar-upload.component';
+import { UserLogInGuard } from './guards/user-log-in-guard.service';
 
 const routes: Routes = [
   { path: 'user', component: UserComponent },
@@ -56,6 +58,10 @@ const routes: Routes = [
     data: {
       expectedRole: 'ADMIN'
     }
+  },
+    {
+    path: 'user/avatar/upload', component: AvatarUploadComponent,
+    canActivate: [UserLogInGuard]
   },
   { path: '', component: LoginComponent }
 ];
