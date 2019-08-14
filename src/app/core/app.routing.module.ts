@@ -15,6 +15,7 @@ import { CategoryListComponent } from '../modules/admin/category-list/category-l
 import { MovieListComponent } from '../modules/admin/movie-list/movie-list.component';
 import { AvatarUploadComponent } from '../modules/user/avatar-upload/avatar-upload.component';
 import { UserLogInGuard } from './guards/user-log-in-guard.service';
+import { MoviesComponent } from '../modules/movies/movies.component';
 
 const routes: Routes = [
   { path: 'user', component: UserComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: PasswordResetComponent },
   { path: 'forgot-password-confirmation', component: PasswordResetConfirmationComponent },
   { path: 'reset-password', component: PasswordResetFormComponent },
+  { path: 'movies', component: MoviesComponent },
   {
     path: 'admin/category-list', component: CategoryListComponent,
     canActivate: [RoleGuardService],

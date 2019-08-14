@@ -36,6 +36,7 @@ import { MovieListComponent } from './modules/admin/movie-list/movie-list.compon
 import { MovieAddModalComponent } from './modules/admin/movie-list/movie-add-modal/movie-add-modal/movie-add-modal.component';
 import { MovieDeleteModalComponent } from './modules/admin/movie-list/movie-delete-modal/movie-delete-modal.component';
 import { AvatarUploadComponent } from './modules/user/avatar-upload/avatar-upload.component';
+import { MoviesComponent } from './modules/movies/movies.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { AvatarUploadComponent } from './modules/user/avatar-upload/avatar-uploa
     MovieListComponent,
     MovieAddModalComponent,
     MovieDeleteModalComponent,
-    AvatarUploadComponent
+    AvatarUploadComponent,
+    MoviesComponent
   ],
   imports: [
     BrowserModule,
